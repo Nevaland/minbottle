@@ -20,12 +20,12 @@ class LetterServiceTest {
     }
 
     @AfterEach
-    void afterEach() {
+    public void afterEach() {
         memoryLetterRepository.clearStore();
     }
 
     @Test
-    void write() {
+    public void write() {
         //given
         Letter letter = new Letter();
         letter.setContent("test");
