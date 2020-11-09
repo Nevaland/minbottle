@@ -46,4 +46,11 @@ public class LetterController {
         return "letter/deleteLetterForm";
     }
 
+    @GetMapping("/letter/list")
+    public String listLetterForm(Model model) {
+        List<Letter> letters = letterService.findLetters();
+        model.addAttribute("letters", letters);
+        return "letter/listLetterForm";
+    }
+
 }
