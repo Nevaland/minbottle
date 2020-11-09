@@ -4,8 +4,11 @@ import nevaland.minbottle.controller.form.LetterForm;
 import nevaland.minbottle.domain.Letter;
 import nevaland.minbottle.service.LetterService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class LetterController {
@@ -17,7 +20,9 @@ public class LetterController {
     }
 
     @GetMapping("/letter")
-    public String letter() {
+    public String letter(Model model) {
+        Letter letter = letterService.pickLetter();
+        model.addAttribute("letter", letter);
         return "letter/letter";
     }
 
