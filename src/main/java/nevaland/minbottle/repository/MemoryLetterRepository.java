@@ -26,6 +26,14 @@ public class MemoryLetterRepository implements LetterRepository {
         return new ArrayList<>(store.values());
     }
 
+    @Override
+    public Letter pick() {
+        List<Letter> letters = findAll();
+        double randomValue = Math.random();
+        int randomIndex = (int)(randomValue * letters.size()) - 1;
+        return letters.get(randomIndex);
+    }
+
     public void clearStore() {
         store.clear();
     }

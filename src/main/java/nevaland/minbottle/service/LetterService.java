@@ -36,4 +36,9 @@ public class LetterService {
     public Optional<Letter> findOne(Long letterId) {
         return letterRepository.findById(letterId);
     }
+
+    public Letter pickLetter() {
+        return letterRepository.pick();
+    }
+
 }

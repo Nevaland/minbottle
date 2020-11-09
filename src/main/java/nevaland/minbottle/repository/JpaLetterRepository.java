@@ -30,4 +30,11 @@ public class JpaLetterRepository implements LetterRepository {
     public List<Letter> findAll() {
         return em.createQuery("select l from Letter l", Letter.class).getResultList();
     }
+
+    @Override
+    public Letter pick() {
+        List<Letter> letters = findAll();
+        int randomIndex = (int)((Math.random() * 10000) % letters.size());
+        return letters.get(randomIndex);
+    }
 }
