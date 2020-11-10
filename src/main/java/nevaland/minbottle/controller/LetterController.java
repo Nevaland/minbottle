@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -24,6 +25,12 @@ public class LetterController {
         Letter letter = letterService.pickLetter();
         model.addAttribute("letter", letter);
         return "letter/letter";
+    }
+    @PostMapping("/letter")
+    @ResponseBody
+    public Letter letterLoad() {
+        Letter letter = letterService.pickLetter();
+        return letter;
     }
 
     @GetMapping("/letter/new")
