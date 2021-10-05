@@ -29,8 +29,7 @@ public class MemoryLetterRepository implements LetterRepository {
     @Override
     public Letter pick() {
         List<Letter> letters = findAll();
-        double randomValue = Math.random();
-        int randomIndex = (int)(randomValue * letters.size()) - 1;
+        int randomIndex = (int)((Math.random() * 10000) % letters.size());
         return letters.get(randomIndex);
     }
 

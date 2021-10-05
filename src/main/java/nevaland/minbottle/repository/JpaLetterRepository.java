@@ -32,7 +32,7 @@ public class JpaLetterRepository implements LetterRepository {
     }
 
     @Override
-    public Letter pick() {
+    public Letter pick() {  // TODO: To be Optional, Have to Control empty letters
         List<Letter> letters = findAll();
         int randomIndex = (int)((Math.random() * 10000) % letters.size());
         return letters.get(randomIndex);
