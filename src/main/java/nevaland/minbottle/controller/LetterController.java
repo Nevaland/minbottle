@@ -4,8 +4,12 @@ import nevaland.minbottle.controller.form.LetterForm;
 import nevaland.minbottle.domain.Letter;
 import nevaland.minbottle.service.LetterService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class LetterController {
@@ -17,8 +21,16 @@ public class LetterController {
     }
 
     @GetMapping("/letter")
-    public String letter() {
+    public String letter(Model model) {
+        Letter letter = letterService.pickLetter();
+        model.addAttribute("letter", letter);
         return "letter/letter";
+    }
+    @PostMapping("/letter")
+    @ResponseBody
+    public Letter letterLoad() {
+        Letter letter = letterService.pickLetter();
+        return letter;
     }
 
     @GetMapping("/letter/new")
@@ -46,4 +58,10 @@ public class LetterController {
         return "letter/deleteLetterForm";
     }
 
+    @GetMapping("/letter/list") // Non-production
+    public String listLetterForm(Model model) {
+        List<Letter> letters = letterService.findLetters();
+        model.addAttribute("letters", letters);
+        return "letter/listLetterForm";
+    }
 }

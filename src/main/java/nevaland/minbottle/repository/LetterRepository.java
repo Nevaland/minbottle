@@ -9,4 +9,5 @@ public interface LetterRepository {
     Letter save(Letter letter);
     Optional<Letter> findById(Long id);
     List<Letter> findAll();
+    Letter pick();
 }
